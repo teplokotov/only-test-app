@@ -1,11 +1,18 @@
 import React from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { historicDates } from '../../constants/historic-dates';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './main-page.scss';
 
 function MainPage() {
+
+  const numberOfEvents = historicDates.length;
+  const angleBetweenDots = 360 / numberOfEvents;
+
+  const [angle, setAngle] = React.useState<number>(angleBetweenDots);
+  const [currentEvent, setCurrentEvent] = React.useState<number>(0);
 
   return (
     <main className='main'>
@@ -16,49 +23,24 @@ function MainPage() {
           <p className='range_end'>2022</p>
         </div>
         <div className="historic-dates__spinner spinner">
-          <div className='spinner__main-circle' style={{ "--count": 6, "--angle": "60deg" } as React.CSSProperties}>
-            <div className='spinner__shoulder spinner__shoulder_active' style={{ "--i": 1 } as React.CSSProperties}>
-              <div className='spinner__circle-area'>
-                <p className='spinner__circle'>1
-                  <span className='spinner__title'>Наука</span>
-                </p>
-              </div>
-            </div>
-            <div className='spinner__shoulder' style={{ "--i": 2 } as React.CSSProperties}>
-              <div className='spinner__circle-area'>
-                <p className='spinner__circle'>2
-                  <span className='spinner__title'>Литература</span>
-                </p>
-              </div>
-            </div>
-            <div className='spinner__shoulder' style={{ "--i": 3 } as React.CSSProperties}>
-              <div className='spinner__circle-area'>
-                <p className='spinner__circle'>3
-                  <span className='spinner__title'>Кино</span>
-                </p>
-              </div>
-            </div>
-            <div className='spinner__shoulder' style={{ "--i": 4 } as React.CSSProperties}>
-              <div className='spinner__circle-area'>
-                <p className='spinner__circle'>4
-                  <span className='spinner__title'>Театр</span>
-                </p>
-              </div>
-            </div>
-            <div className='spinner__shoulder' style={{ "--i": 5 } as React.CSSProperties}>
-              <div className='spinner__circle-area'>
-                <p className='spinner__circle'>5
-                  <span className='spinner__title'>Игры</span>
-                </p>
-              </div> 
-            </div>
-            <div className='spinner__shoulder' style={{ "--i": 6 } as React.CSSProperties}>
-              <div className='spinner__circle-area'>
-                <p className='spinner__circle'>6
-                  <span className='spinner__title'>Космос</span>
-                </p>
-              </div>
-            </div>
+          <div className='spinner__main-circle' 
+               style={{ "--count": numberOfEvents, "--angle": angle + "deg" } as React.CSSProperties}>
+            {
+              historicDates.map((item, index) => {
+                const { title } = item;
+                const idx = index + 1;
+                return (
+                  <div className={"spinner__shoulder " + (currentEvent === index ? 'spinner__shoulder_active' : '')} 
+                       style={{ "--i": idx } as React.CSSProperties}>
+                  <div className='spinner__circle-area'>
+                    <p className='spinner__circle'>{idx}
+                      <span className='spinner__title'>{title}</span>
+                    </p>
+                  </div>
+                  </div>
+                );
+              })
+            }
           </div>
         </div>
         <div className="historic-dates__navigation navigation">
