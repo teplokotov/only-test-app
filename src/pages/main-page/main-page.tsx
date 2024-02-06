@@ -6,8 +6,11 @@ function MainPage() {
     <main className='main'>
       <section className='historic-dates'>
         <h1 className='historic-dates__heading'>Исторические даты</h1>
-        <div className="historic-dates__range"></div>
-        <div className="historic-dates__spinner">
+        <div className="historic-dates__range range">
+          <p className='range_start'>2015</p>
+          <p className='range_end'>2022</p>
+        </div>
+        <div className="historic-dates__spinner spinner">
           <div className='spinner__main-circle' style={{ "--count": 6, "--angle": "60deg" } as React.CSSProperties}>
             <div className='spinner__shoulder spinner__shoulder_active' style={{ "--i": 1 } as React.CSSProperties}>
               <div className='spinner__circle-area'>
@@ -53,7 +56,13 @@ function MainPage() {
             </div>
           </div>
         </div>
-        <div className="historic-dates__navigation"></div>
+        <div className="historic-dates__navigation navigation">
+          <p className='navigation__total'>01/06</p>
+          <div className='navigation__buttons control-buttons'>
+            <button className='control-buttons__default control-buttons__prev'></button>
+            <button className='control-buttons__default control-buttons__next'></button>
+          </div>
+        </div>
         <div className="historic-dates__slider"></div>
       </section>
     </main>

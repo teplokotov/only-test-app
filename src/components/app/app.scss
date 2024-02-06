@@ -1,5 +1,7 @@
 .app {
 	--font-main-color: #42567A;
+	--font-range-start-color: #5D5FEF;
+	--font-range-end-color: #EF5DA8;
 
 	--line-color: #E3E6ED;
 	--bg-color: #F4F5F9;
@@ -9,4 +11,9 @@
 	--dot-color: #42567A;
 
 	background-color: var(--bg-color);
+
+	@media (width >= 1920px) {
+		padding-left: 320px;
+		padding-right: 160px;
+	}
 }
