@@ -1,7 +1,12 @@
 import React from 'react';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import './main-page.scss';
 
 function MainPage() {
+
   return (
     <main className='main'>
       <section className='historic-dates'>
@@ -63,7 +68,49 @@ function MainPage() {
             <button className='control-buttons__default control-buttons__next'></button>
           </div>
         </div>
-        <div className="historic-dates__slider"></div>
+        <div className="historic-dates__slider slider">
+          <button className='slider__btn slider__btn_prev'></button>
+          {
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={80}
+              slidesPerView={4}
+              navigation={{
+                prevEl: '.slider__btn_prev',
+                nextEl: '.slider__btn_next',
+              }}
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+              onSlideChange={() => console.log('slide change')}
+            >
+              <SwiperSlide className='slider__slide'>
+                <p className='slider__year'>2015</p>
+                <p className='slider__description'>13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды</p>
+              </SwiperSlide>
+              <SwiperSlide className='slider__slide'>
+                <p className='slider__year'>2016</p>
+                <p className='slider__description'>Телескоп «Хаббл» обнаружил самую удалённую из всех обнаруженных галактик, получившую обозначение GN-z11</p>
+              </SwiperSlide>
+              <SwiperSlide className='slider__slide'>
+                <p className='slider__year'>2017</p>
+                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
+              </SwiperSlide>
+              <SwiperSlide className='slider__slide'>
+                <p className='slider__year'>2018</p>
+                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
+              </SwiperSlide>
+              <SwiperSlide className='slider__slide'>
+                <p className='slider__year'>2019</p>
+                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
+              </SwiperSlide>
+              <SwiperSlide className='slider__slide'>
+                <p className='slider__year'>2020</p>
+                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
+              </SwiperSlide>
+            </Swiper>
+          }
+          <button className='slider__btn slider__btn_next'></button>  
+        </div>
       </section>
     </main>
   );

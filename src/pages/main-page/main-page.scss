@@ -65,6 +65,13 @@
 		margin-left: 80px;
 	}
 
+	&__slider {
+		margin-top: 56px;
+		margin-bottom: 104px;
+		// padding-left: 80px;
+		// padding-right: 80px;
+	}
+
 }
 
 .spinner {
@@ -238,5 +245,73 @@
 	&__next {
 		transform: rotate(-45deg);
 	}
+
+}
+
+.slider {
+	padding-left: 80px;
+	padding-right: 80px;
+	display: flex;
+	align-items: center;
+
+	&__slide {
+		max-width: 320px;
+		width: 100%;
+	}
+
+	&__year {
+		margin: 0;
+		padding: 0 15px 0 0;
+		font-family: 'Bebas Neue', sans-serif;
+		font-weight: 400;
+		font-size: 25px;
+		line-height: 120%;
+		text-transform: uppercase;
+		color: var(--font-year-color);
+	}
+
+	&__description {
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 150%;
+		color: var(--font-main-color);
+	}
+
+	&__btn {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		border-radius: 100%;
+		border: none;
+		box-shadow: 0 0 15px 0 rgba(56, 119, 238, 0.1);
+		background: #fff;
+		cursor: pointer;
+		padding: 0 10px 10px 0;
+
+		&::before {
+			content: "";
+			position: absolute;
+			border: solid var(--font-year-color);
+			width: 6px;
+			height: 6px;
+			border-width: 0 2px 2px 0;
+		}
+		
+		&_prev {
+			left: 20px;
+			transform: rotate(135deg);
+		}
+	
+		&_next {
+			right: 20px;
+			transform: rotate(-45deg);
+		}
+
+		&:disabled {
+			display: none;
+		}
+
+	}
+
 
 }
