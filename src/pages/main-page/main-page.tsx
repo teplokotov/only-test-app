@@ -5,6 +5,7 @@ import { historicDates } from '../../constants/historic-dates';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './main-page.scss';
+import gsap from "gsap";
 
 function MainPage() {
 
@@ -14,9 +15,13 @@ function MainPage() {
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const mainCircleRef = useRef<HTMLDivElement>(null);
+  const startDateRef = useRef<HTMLDivElement>(null);
+  const endDateRef = useRef<HTMLDivElement>(null);
   const [angle, setAngle] = React.useState<number>(angleBetweenDots);
   const [currentEvent, setCurrentEvent] = React.useState<number>(0);
   const [timeOfRotation, setTimeOfRotation] = React.useState<number>(defaultTimeOfRotation);
+  const [startDate, setStartDate] = React.useState<number>(Number(historicDates[0].events[0].date));
+  const [endDate, setEndDate] = React.useState<number>(Number(historicDates[0].events[historicDates.length - 1].date));
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,7 +50,33 @@ function MainPage() {
     loadThis(currentEvent + 1);
   }
 
+  function animateDatesRange(index: number): void {
+    const newStartDate = Number(historicDates[index].events[0].date);
+    const startRange = newStartDate - startDate;
+    const newEndDate = Number(historicDates[index].events[historicDates.length - 1].date);
+    const endRange = newEndDate - endDate;
+    const animationTime = (timeOfRotation + 300) / 1000;
+
+    gsap.to(startDateRef.current, {
+      duration: animationTime,
+      textContent: `+=${startRange}`,
+      roundProps: "textContent",
+      ease: "none",
+      onUpdate: () => setStartDate(newStartDate)
+    });
+    gsap.to(endDateRef.current, {
+      duration: animationTime,
+      textContent: `+=${endRange}`,
+      roundProps: "textContent",
+      ease: "none",
+      onUpdate: () => setEndDate(newEndDate)
+    });
+  }
+
   function loadThis(index: number):void {
+
+    animateDatesRange(index);
+
     mainCircleRef.current?.children[index].classList.add("spinner__shoulder_active");
     
     const angleOfRotation = angleBetweenDots - index * angleBetweenDots;
@@ -63,8 +94,8 @@ function MainPage() {
       <section className='historic-dates'>
         <h1 className='historic-dates__heading'>Исторические даты</h1>
         <div className="historic-dates__range range">
-          <p className='range_start'>2015</p>
-          <p className='range_end'>2022</p>
+          <p className='range_start' ref={startDateRef}>{startDate}</p>
+          <p className='range_end' ref={endDateRef}>{endDate}</p>
         </div>
         <div className="historic-dates__spinner spinner">
           <div ref={mainCircleRef} className='spinner__main-circle' 
