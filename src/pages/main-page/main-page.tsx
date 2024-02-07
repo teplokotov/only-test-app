@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { historicDates } from '../../constants/historic-dates';
@@ -11,19 +11,26 @@ function MainPage() {
   const numberOfEvents = historicDates.length;
   const angleBetweenDots = 360 / numberOfEvents;
 
+  const sliderRef = useRef<HTMLDivElement>(null);
   const [angle, setAngle] = React.useState<number>(angleBetweenDots);
   const [currentEvent, setCurrentEvent] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    setTimeout(() => sliderRef.current?.classList.add("slider_show"), 300);
+  }, [currentEvent]);
 
   function getTotal(length: number, index: number): string {
     return `${String(index + 1).padStart(2,'0')}/${String(length).padStart(2,'0')}`;
   }
 
   function loadPrev():void {
-    setCurrentEvent(currentEvent - 1);
+    sliderRef.current?.classList.remove("slider_show");
+    setTimeout(() => setCurrentEvent(currentEvent - 1), 300);
   }
 
   function loadNext():void {
-    setCurrentEvent(currentEvent + 1);
+    sliderRef.current?.classList.remove("slider_show");
+    setTimeout(() => setCurrentEvent(currentEvent + 1), 300);
   }
 
   return (
@@ -74,7 +81,7 @@ function MainPage() {
             </button>
           </div>
         </div>
-        <div className="historic-dates__slider slider">
+        <div ref={sliderRef} className="historic-dates__slider slider">
           <button className='slider__btn slider__btn_prev'></button>
           {
             <Swiper
@@ -87,7 +94,6 @@ function MainPage() {
               }}
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
-              onSlideChange={() => console.log('slide change')}
             >
               {
                 historicDates[currentEvent].events

@@ -68,8 +68,6 @@
 	&__slider {
 		margin-top: 56px;
 		margin-bottom: 104px;
-		// padding-left: 80px;
-		// padding-right: 80px;
 	}
 
 }
@@ -262,6 +260,12 @@
 	padding-right: 80px;
 	display: flex;
 	align-items: center;
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
+
+	&_show {
+		opacity: 1;
+	}
 
 	&__slide {
 		max-width: 320px;
