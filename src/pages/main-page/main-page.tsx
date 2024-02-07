@@ -10,11 +10,13 @@ function MainPage() {
 
   const numberOfEvents = historicDates.length;
   const angleBetweenDots = 360 / numberOfEvents;
+  const defaultTimeOfRotation = 300;
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const mainCircleRef = useRef<HTMLDivElement>(null);
   const [angle, setAngle] = React.useState<number>(angleBetweenDots);
   const [currentEvent, setCurrentEvent] = React.useState<number>(0);
+  const [timeOfRotation, setTimeOfRotation] = React.useState<number>(defaultTimeOfRotation);
 
   React.useEffect(() => {
     setTimeout(() => sliderRef.current?.classList.add("slider_show"), 300);
@@ -30,15 +32,20 @@ function MainPage() {
   }
   
   function loadPrev():void {
-    fadeIt(() => setCurrentEvent(currentEvent - 1));
+    loadThis(currentEvent - 1);
   }
 
   function loadNext():void {
-    fadeIt(() => setCurrentEvent(currentEvent + 1));
+    loadThis(currentEvent + 1);
   }
 
   function loadThis(index: number):void {
     mainCircleRef.current?.children[index].classList.add("spinner__shoulder_active");
+    
+    const angleOfRotation = angleBetweenDots - index * angleBetweenDots;
+    setTimeOfRotation(Math.abs(currentEvent - index) * defaultTimeOfRotation);
+    setTimeout(() => setAngle(angleOfRotation), 300);
+
     fadeIt(() => setCurrentEvent(index));
   }
 
@@ -52,7 +59,12 @@ function MainPage() {
         </div>
         <div className="historic-dates__spinner spinner">
           <div ref={mainCircleRef} className='spinner__main-circle' 
-               style={{ "--count": numberOfEvents, "--angle": angle + "deg" } as React.CSSProperties}>
+               style={{ 
+                "--count": numberOfEvents, 
+                "--angle": angle + "deg", 
+                "--time": timeOfRotation + "ms",
+                "--delay": timeOfRotation + 300 + "ms",
+                } as React.CSSProperties}>
             {
               historicDates.map((item, index) => {
                 const { title } = item;
