@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { historicDates } from '../../constants/historic-dates';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './main-page.scss';
 import gsap from "gsap";
 
@@ -143,15 +144,16 @@ function MainPage() {
           </div>
         </div>
         <div ref={sliderRef} className="historic-dates__slider slider">
+          <p className='slider__mobile-title'>{historicDates[currentEvent].title}</p>
           <button className='slider__btn slider__btn_prev'></button>
           {
             <Swiper
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
               spaceBetween={80}
               slidesPerView={4}
               breakpoints={{
                 320: {
-                 slidesPerView: 2,
+                 slidesPerView: 1.5,
                  spaceBetween: 25
                 },
                 769: {
