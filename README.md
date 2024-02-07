@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# Тестовое задание Only Digital
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![ADAPTIVE](https://img.shields.io/badge/ADAPTIVE-%23593d88.svg?style=for-the-badge&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![SCSS](https://img.shields.io/badge/SCSS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)](https://sass-lang.com/)
+[![GSAP](https://img.shields.io/badge/gsap-black.svg?style=for-the-badge&logo=gsap&logoColor=white)](https://gsap.com/)
+[![Swiper](https://img.shields.io/badge/swiper-e9eefa.svg?style=for-the-badge&logo=swiper&logoColor=0080ff)](https://swiperjs.com/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+🌐 [https://teplokotov.github.io/only-test-app/](https://teplokotov.github.io/only-test-app/)
 
-In the project directory, you can run:
+Блок «Исторические даты» содержит информацию о временных отрезках, в каждом из которых существует несколько событий. 
+При переключении временных отрезков изменяются соответствующие числа и под ними показывается новый слайдер, который содержит подробную информацию по ключевым событиям на активном временном отрезке.
 
-### `npm start`
+### Запуск проекта в 🖐 5 шагов
+1. Клонируйте проект
+```bash
+git clone https://github.com/teplokotov/only-test-app.git
+```
+2. Перейдите в директорию проекта
+```bash
+cd only-test-app
+```
+3. Установите модули
+```bash
+npm install
+```
+4. Запустите проект
+```bash
+npm start
+```
+5. Откройте страницу
+```bash
+http://localhost:3000
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Используемые технологии
+- VS Code
+- Git Bash
+- Figma
+- React 18.2
+- TypeScript
+- SCSS
+- GSAP 2.1
+- Swiper
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Контакты
+- Филипп Добриков
+- philipp.dobrikov@yandex.ru
+- https://t.me/hello_philipp
