@@ -19,7 +19,10 @@ function MainPage() {
   const [timeOfRotation, setTimeOfRotation] = React.useState<number>(defaultTimeOfRotation);
 
   React.useEffect(() => {
-    setTimeout(() => sliderRef.current?.classList.add("slider_show"), 300);
+    const timer = setTimeout(() => {
+      sliderRef.current?.classList.add("slider_show");
+      clearTimeout(timer);
+    }, 300);
   }, [currentEvent]);
 
   function getTotal(length: number, index: number): string {
@@ -28,7 +31,10 @@ function MainPage() {
 
   function fadeIt(fn: Function):void {
     sliderRef.current?.classList.remove("slider_show");
-    setTimeout(fn, 300);
+    const timer = setTimeout(() => {
+      fn();
+      clearTimeout(timer);
+    }, 300);
   }
   
   function loadPrev():void {
@@ -44,7 +50,10 @@ function MainPage() {
     
     const angleOfRotation = angleBetweenDots - index * angleBetweenDots;
     setTimeOfRotation(Math.abs(currentEvent - index) * defaultTimeOfRotation);
-    setTimeout(() => setAngle(angleOfRotation), 300);
+    const timer = setTimeout(() => {
+      setAngle(angleOfRotation);
+      clearTimeout(timer);
+    }, 300);
 
     fadeIt(() => setCurrentEvent(index));
   }
