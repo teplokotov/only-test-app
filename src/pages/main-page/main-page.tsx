@@ -12,6 +12,7 @@ function MainPage() {
   const angleBetweenDots = 360 / numberOfEvents;
 
   const sliderRef = useRef<HTMLDivElement>(null);
+  const mainCircleRef = useRef<HTMLDivElement>(null);
   const [angle, setAngle] = React.useState<number>(angleBetweenDots);
   const [currentEvent, setCurrentEvent] = React.useState<number>(0);
 
@@ -37,6 +38,7 @@ function MainPage() {
   }
 
   function loadThis(index: number):void {
+    mainCircleRef.current?.children[index].classList.add("spinner__shoulder_active");
     fadeIt(() => setCurrentEvent(index));
   }
 
@@ -49,7 +51,7 @@ function MainPage() {
           <p className='range_end'>2022</p>
         </div>
         <div className="historic-dates__spinner spinner">
-          <div className='spinner__main-circle' 
+          <div ref={mainCircleRef} className='spinner__main-circle' 
                style={{ "--count": numberOfEvents, "--angle": angle + "deg" } as React.CSSProperties}>
             {
               historicDates.map((item, index) => {
