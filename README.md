@@ -6,6 +6,7 @@
 [![GSAP](https://img.shields.io/badge/gsap-black.svg?style=for-the-badge&logo=gsap&logoColor=white)](https://gsap.com/)
 [![Swiper](https://img.shields.io/badge/swiper-e9eefa.svg?style=for-the-badge&logo=swiper&logoColor=0080ff)](https://swiperjs.com/)
 
+[![image](https://github.com/teplokotov/only-test-app/assets/118915923/0a8effe6-8841-4a1b-bd48-ba87035af2c8)](https://teplokotov.github.io/only-test-app/)
 
 🌐 [https://teplokotov.github.io/only-test-app/](https://teplokotov.github.io/only-test-app/)
 
