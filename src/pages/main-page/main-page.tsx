@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { historicDates } from '../../constants/historic-dates';
 import 'swiper/css';
@@ -148,7 +148,7 @@ function MainPage() {
           <button className='slider__btn slider__btn_prev'></button>
           {
             <Swiper
-              modules={[Navigation, Pagination]}
+              modules={[Navigation]}
               spaceBetween={80}
               slidesPerView={4}
               breakpoints={{
@@ -187,6 +187,17 @@ function MainPage() {
             </Swiper>
           }
           <button className='slider__btn slider__btn_next'></button>  
+        </div>
+        <div className='events__control-buttons'>
+          {
+            historicDates.map((item, index) => {
+              return <button 
+                className={"events__button " + (currentEvent === index ? 'events__button_active' : '')}
+                key={index}
+                onClick={() => loadThis(index)}
+                ></button>
+            })
+          }
         </div>
       </section>
     </main>
