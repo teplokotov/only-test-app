@@ -149,6 +149,20 @@ function MainPage() {
               modules={[Navigation]}
               spaceBetween={80}
               slidesPerView={4}
+              breakpoints={{
+                320: {
+                 slidesPerView: 2,
+                 spaceBetween: 25
+                },
+                769: {
+                 slidesPerView: 3,
+                 spaceBetween: 80
+                },
+                1025: {
+                 slidesPerView: 4,
+                 spaceBetween: 80
+                }
+              }}
               navigation={{
                 prevEl: '.slider__btn_prev',
                 nextEl: '.slider__btn_next',
