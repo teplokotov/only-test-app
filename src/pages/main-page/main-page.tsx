@@ -14,6 +14,18 @@ function MainPage() {
   const [angle, setAngle] = React.useState<number>(angleBetweenDots);
   const [currentEvent, setCurrentEvent] = React.useState<number>(0);
 
+  function getTotal(length: number, index: number): string {
+    return `${String(index + 1).padStart(2,'0')}/${String(length).padStart(2,'0')}`;
+  }
+
+  function loadPrev():void {
+    setCurrentEvent(currentEvent - 1);
+  }
+
+  function loadNext():void {
+    setCurrentEvent(currentEvent + 1);
+  }
+
   return (
     <main className='main'>
       <section className='historic-dates'>
@@ -30,7 +42,7 @@ function MainPage() {
                 const { title } = item;
                 const idx = index + 1;
                 return (
-                  <div className={"spinner__shoulder " + (currentEvent === index ? 'spinner__shoulder_active' : '')} 
+                  <div key={index} className={"spinner__shoulder " + (currentEvent === index ? 'spinner__shoulder_active' : '')} 
                        style={{ "--i": idx } as React.CSSProperties}
                        onClick={() => setCurrentEvent(index)}
                        >
@@ -46,10 +58,20 @@ function MainPage() {
           </div>
         </div>
         <div className="historic-dates__navigation navigation">
-          <p className='navigation__total'>01/06</p>
+          <p className='navigation__total'>{getTotal(numberOfEvents, currentEvent)}</p>
           <div className='navigation__buttons control-buttons'>
-            <button className='control-buttons__default control-buttons__prev'></button>
-            <button className='control-buttons__default control-buttons__next'></button>
+            <button 
+              className='control-buttons__default control-buttons__prev'
+              onClick={loadPrev}
+              disabled={currentEvent === 0 ? true : false}
+            >
+            </button>
+            <button
+              className='control-buttons__default control-buttons__next'
+              onClick={loadNext}
+              disabled={currentEvent === numberOfEvents - 1 ? true : false}
+            >
+            </button>
           </div>
         </div>
         <div className="historic-dates__slider slider">
@@ -69,10 +91,10 @@ function MainPage() {
             >
               {
                 historicDates[currentEvent].events
-                  .map((item) => {
+                  .map((item, index) => {
                     const { date, description } = item;
                     return (
-                      <SwiperSlide className='slider__slide'>
+                      <SwiperSlide key={index} className='slider__slide'>
                         <p className='slider__year'>{date}</p>
                         <p className='slider__description'>{description}</p>
                       </SwiperSlide>
