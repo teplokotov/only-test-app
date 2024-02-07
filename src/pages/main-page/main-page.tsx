@@ -31,12 +31,14 @@ function MainPage() {
                 const idx = index + 1;
                 return (
                   <div className={"spinner__shoulder " + (currentEvent === index ? 'spinner__shoulder_active' : '')} 
-                       style={{ "--i": idx } as React.CSSProperties}>
-                  <div className='spinner__circle-area'>
-                    <p className='spinner__circle'>{idx}
-                      <span className='spinner__title'>{title}</span>
-                    </p>
-                  </div>
+                       style={{ "--i": idx } as React.CSSProperties}
+                       onClick={() => setCurrentEvent(index)}
+                       >
+                    <div className='spinner__circle-area'>
+                      <p className='spinner__circle'>{idx}
+                        <span className='spinner__title'>{title}</span>
+                      </p>
+                    </div>
                   </div>
                 );
               })
@@ -65,30 +67,18 @@ function MainPage() {
               scrollbar={{ draggable: true }}
               onSlideChange={() => console.log('slide change')}
             >
-              <SwiperSlide className='slider__slide'>
-                <p className='slider__year'>2015</p>
-                <p className='slider__description'>13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды</p>
-              </SwiperSlide>
-              <SwiperSlide className='slider__slide'>
-                <p className='slider__year'>2016</p>
-                <p className='slider__description'>Телескоп «Хаббл» обнаружил самую удалённую из всех обнаруженных галактик, получившую обозначение GN-z11</p>
-              </SwiperSlide>
-              <SwiperSlide className='slider__slide'>
-                <p className='slider__year'>2017</p>
-                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
-              </SwiperSlide>
-              <SwiperSlide className='slider__slide'>
-                <p className='slider__year'>2018</p>
-                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
-              </SwiperSlide>
-              <SwiperSlide className='slider__slide'>
-                <p className='slider__year'>2019</p>
-                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
-              </SwiperSlide>
-              <SwiperSlide className='slider__slide'>
-                <p className='slider__year'>2020</p>
-                <p className='slider__description'>Компания Tesla официально представила первый в мире электрический грузовик Tesla Semi</p>
-              </SwiperSlide>
+              {
+                historicDates[currentEvent].events
+                  .map((item) => {
+                    const { date, description } = item;
+                    return (
+                      <SwiperSlide className='slider__slide'>
+                        <p className='slider__year'>{date}</p>
+                        <p className='slider__description'>{description}</p>
+                      </SwiperSlide>
+                    );
+                  })
+              }
             </Swiper>
           }
           <button className='slider__btn slider__btn_next'></button>  
