@@ -121,7 +121,7 @@
 		color: var(--font-main-color);
 		visibility: visible;
 		scale: 0.105;
-		transition: scale 300ms ease-in-out;
+		transition: all 300ms ease-in-out;
 	}
 
 	&__title {

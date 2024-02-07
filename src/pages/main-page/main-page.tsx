@@ -23,14 +23,21 @@ function MainPage() {
     return `${String(index + 1).padStart(2,'0')}/${String(length).padStart(2,'0')}`;
   }
 
-  function loadPrev():void {
+  function fadeIt(fn: Function):void {
     sliderRef.current?.classList.remove("slider_show");
-    setTimeout(() => setCurrentEvent(currentEvent - 1), 300);
+    setTimeout(fn, 300);
+  }
+  
+  function loadPrev():void {
+    fadeIt(() => setCurrentEvent(currentEvent - 1));
   }
 
   function loadNext():void {
-    sliderRef.current?.classList.remove("slider_show");
-    setTimeout(() => setCurrentEvent(currentEvent + 1), 300);
+    fadeIt(() => setCurrentEvent(currentEvent + 1));
+  }
+
+  function loadThis(index: number):void {
+    fadeIt(() => setCurrentEvent(index));
   }
 
   return (
@@ -51,7 +58,7 @@ function MainPage() {
                 return (
                   <div key={index} className={"spinner__shoulder " + (currentEvent === index ? 'spinner__shoulder_active' : '')} 
                        style={{ "--i": idx } as React.CSSProperties}
-                       onClick={() => setCurrentEvent(index)}
+                       onClick={() => loadThis(index)}
                        >
                     <div className='spinner__circle-area'>
                       <p className='spinner__circle'>{idx}
